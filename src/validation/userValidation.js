@@ -1,4 +1,4 @@
-const { ExpressValidator, body } = reauire("express-validator");
+const { ExpressValidator, body } = require("express-validator");
 
 const signupValidate = function signupValidate() {
   return [
