@@ -1,6 +1,6 @@
 const Chat = require("../src/database/models/Chat");
 const Message = require("../src/database/models/Message");
-const { User } = require("../src/database/models/User");
+const User = require("../src/database/models/User");
 
 const sendMessage = async (req, res) => {
   const { content, chatId } = req.body;

@@ -1,5 +1,5 @@
 const Chat = require("../src/database/models/Chat");
-const { User } = require("../src/database/models/User");
+const User = require("../src/database/models/User");
 
 const accessChat = async (req, res) => {
   try {

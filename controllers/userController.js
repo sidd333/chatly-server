@@ -1,5 +1,5 @@
-const { User } = require("../src/database/models/User");
-const { fetchuser } = require("../middlewares/fetchUser");
+const User = require("../src/database/models/User");
+const fetchuser = require("../middlewares/fetchUser");
 
 const getallusers = async (req, res) => {
   const keyword = req.query.search
