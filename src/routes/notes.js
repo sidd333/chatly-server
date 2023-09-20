@@ -8,14 +8,14 @@ const fetchuser = require("../../middlewares/fetchUser");
 
 Router.get("/fetchAllNotes", fetchuser, async (req, res) => {
   try {
-    const notes = await Notes.find({ user: req.user.id });
+    const notes = await Notes.find({ user: req.user._id });
     res.send(notes);
   } catch (error) {
     res.status(500).send({ error: "internal server error" });
   }
 });
 
-Router.post("/addnote", notesValidate(), fetchuser, async (req, res) => {
+Router.post("/addnote", fetchuser, notesValidate, async (req, res) => {
   try {
     const { title, description, tag } = req.body;
     const errors = validationResult(req);
@@ -23,8 +23,13 @@ Router.post("/addnote", notesValidate(), fetchuser, async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const note = new Notes({ title, description, tag, user: req.user.id });
-    const save = await note.save();
+    const note = await Notes.create({
+      title,
+      description,
+      tag,
+      user: req.user.id,
+    });
+
     res.send(note);
   } catch (error) {
     res.status(500).send({ error: "internal server error" + error.stack });
