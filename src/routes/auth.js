@@ -1,11 +1,14 @@
-import express from "express";
-import { body, validationResult } from "express-validator";
-import { User } from "../database/models/User";
-import { signupValidate, signinValidate } from "../validation/userValidation";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import { getallusers } from "../../controllers/userController";
-import { fetchuser } from "../../middlewares/fetchUser";
+const express = require("express");
+const { body, validationResult } = require("express-validator");
+const { User } = require("../database/models/User");
+const {
+  signupValidate,
+  signinValidate,
+} = require("../validation/userValidation");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { getallusers } = require("../../controllers/userController");
+const { fetchuser } = require("../../middlewares/fetchUser");
 
 const Router = express.Router();
 
@@ -108,4 +111,4 @@ Router.post("/getuser", fetchuser, async (req, res) => {
 
 Router.get("/", fetchuser, getallusers);
 
-export default Router;
+module.exports = Router;

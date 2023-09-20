@@ -1,8 +1,8 @@
-import Chat from "../src/database/models/Chat";
-import Message from "../src/database/models/Message";
-import { User } from "../src/database/models/User";
+const Chat = require("../src/database/models/Chat");
+const Message = require("../src/database/models/Message");
+const { User } = require("../src/database/models/User");
 
-export const sendMessage = async (req, res) => {
+const sendMessage = async (req, res) => {
   const { content, chatId } = req.body;
   if (!content || !chatId) {
     console.log("Invalid data");
@@ -35,7 +35,7 @@ export const sendMessage = async (req, res) => {
   }
 };
 
-export const allMessages = async (req, res) => {
+const allMessages = async (req, res) => {
   try {
     const messages = await Message.find({ chat: req.params.chatId })
       .populate("sender", "-password")
@@ -46,3 +46,5 @@ export const allMessages = async (req, res) => {
     console.log(error.stack);
   }
 };
+
+module.exports = { sendMessage, allMessages };

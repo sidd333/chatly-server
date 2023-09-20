@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "babel-node": "babel-node --presets='@babel/preset-env' --ignore='foo|bar|baz'",
     "build": " babel index.js -d build ",
     "start": "npm run build && nodemon dist/index.js",
     "dev": "nodemon --exec babel-node ./index.js"
@@ -24,10 +23,6 @@
     "socket.io": "^4.7.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.21.5",
-    "@babel/core": "^7.21.8",
-    "@babel/node": "^7.20.7",
-    "@babel/preset-env": "^7.21.5",
     "nodemon": "^2.0.22"
   }
 }

@@ -1,4 +1,4 @@
-import { mongoose, Schema } from "mongoose";
+const { mongoose, Schema } = require("mongoose");
 
 const UserSchema = new Schema({
   name: String,
@@ -18,4 +18,6 @@ UserSchema.statics.findByEmail = async ({ email }) => {
   return false;
 };
 
-export const User = mongoose.model("User", UserSchema);
+const User = mongoose.model("User", UserSchema);
+
+module.exports = User;

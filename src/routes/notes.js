@@ -1,10 +1,10 @@
-import express from "express";
+const express = require("express");
 const Router = express.Router();
-import { validationResult } from "express-validator";
-import { notesValidate } from "../validation/notesValidation";
+const { validationResult } = require("express-validator");
+const { notesValidate } = require("../validation/notesValidation");
 
-import Notes from "../database/models/Notes";
-import { fetchuser } from "../../middlewares/fetchUser";
+const Notes = require("../database/models/Notes");
+const { fetchuser } = require("../../middlewares/fetchUser");
 
 Router.get("/fetchAllNotes", fetchuser, async (req, res) => {
   try {
@@ -73,4 +73,4 @@ Router.delete("/deletenote/:id", fetchuser, async (req, res) => {
   }
 });
 
-export default Router;
+module.exports = Router;

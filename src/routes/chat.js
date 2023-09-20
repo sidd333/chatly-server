@@ -1,13 +1,13 @@
-import express from "express";
-import { fetchuser } from "../../middlewares/fetchUser";
-import {
+const express = require("express");
+const { fetchuser } = require("../../middlewares/fetchUser");
+const {
   accessChat,
   fetchChat,
   createGroupChat,
   renameGroup,
   addToGroup,
   removeFromGroup,
-} from "../../controllers/chatController";
+} = require("../../controllers/chatController");
 const Router = express.Router();
 
 Router.post("/", fetchuser, accessChat); // create chat if it does'nt exist and fetch one if it exists

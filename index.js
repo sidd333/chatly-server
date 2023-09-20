@@ -1,17 +1,17 @@
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
+const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("cors");
 
 //routes
-import path from "path";
-import auth from "./src/routes/auth";
-import notes from "./src/routes/notes";
-import chat from "./src/routes/chat";
-import message from "./src/routes/message";
+const path = require("path");
+const auth = require("./src/routes/auth");
+const notes = require("./src/routes/notes");
+const chat = require("./src/routes/chat");
+const message = require("./src/routes/message");
 
-import connectToMongo from "./src/database/db";
+const connectToMongo = require("./src/database/db");
 
-import { Server } from "socket.io";
+const { Server } = require("socket.io");
 
 dotenv.config();
 connectToMongo();

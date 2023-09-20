@@ -1,10 +1,8 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
- const connectToMongo = () => {
-   
-    mongoose.connect(process.env.URI);
+const connectToMongo = () => {
+  mongoose.connect(process.env.URI);
   console.log("Connected to Mongoodb");
 };
 
-
-export default connectToMongo;
+module.exports = connectToMongo;

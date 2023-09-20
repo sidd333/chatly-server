@@ -1,5 +1,5 @@
-import Chat from "../src/database/models/Chat";
-import { User } from "../src/database/models/User";
+const Chat = require("../src/database/models/Chat");
+const { User } = require("../src/database/models/User");
 
 const accessChat = async (req, res) => {
   try {
@@ -152,7 +152,7 @@ const removeFromGroup = async (req, res) => {
   }
 };
 
-export {
+module.exports = {
   accessChat,
   fetchChat,
   createGroupChat,
