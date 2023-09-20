@@ -8,7 +8,7 @@ const {
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { getallusers } = require("../../controllers/userController");
-const { fetchuser } = require("../../middlewares/fetchUser");
+const fetchuser = require("../../middlewares/fetchUser");
 
 const Router = express.Router();
 

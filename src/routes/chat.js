@@ -1,5 +1,5 @@
 const express = require("express");
-const { fetchuser } = require("../../middlewares/fetchUser");
+const fetchuser = require("../../middlewares/fetchUser");
 const {
   accessChat,
   fetchChat,
@@ -16,4 +16,4 @@ Router.post("/group", fetchuser, createGroupChat);
 Router.put("/rename", fetchuser, renameGroup);
 Router.put("/addMember", fetchuser, addToGroup);
 Router.delete("/removeMember", fetchuser, removeFromGroup);
-export default Router;
+module.exports = Router;

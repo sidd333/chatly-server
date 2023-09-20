@@ -1,10 +1,10 @@
 const express = require("express");
 const Router = express.Router();
-const { validationResult } = require("express-validator");
-const { notesValidate } = require("../validation/notesValidation");
+const validationResult = require("express-validator");
+const notesValidate = require("../validation/notesValidation");
 
 const Notes = require("../database/models/Notes");
-const { fetchuser } = require("../../middlewares/fetchUser");
+const fetchuser = require("../../middlewares/fetchUser");
 
 Router.get("/fetchAllNotes", fetchuser, async (req, res) => {
   try {

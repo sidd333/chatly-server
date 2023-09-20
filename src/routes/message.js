@@ -1,5 +1,5 @@
 const express = require("express");
-const { fetchuser } = require("../../middlewares/fetchUser");
+const fetchuser = require("../../middlewares/fetchUser");
 const {
   allMessages,
   sendMessage,
