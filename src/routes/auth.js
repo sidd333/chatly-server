@@ -1,6 +1,6 @@
 const express = require("express");
 const { body, validationResult } = require("express-validator");
-const { User } = require("../database/models/User");
+const User = require("../database/models/User");
 const {
   signupValidate,
   signinValidate,
@@ -27,7 +27,7 @@ Router.post("/signup", signupValidate(), async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const processedPassword = await bcrypt.hash(req.body.password, salt);
 
-    User.create({
+    await User.create({
       name: req.body.name,
       email: req.body.email,
       password: processedPassword,
@@ -35,7 +35,7 @@ Router.post("/signup", signupValidate(), async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     const data = {
       user: {
-        id: user.id,
+        id: user._id,
       },
     };
 
@@ -51,7 +51,7 @@ Router.post("/signup", signupValidate(), async (req, res) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    res.send(error);
   }
 });
 
