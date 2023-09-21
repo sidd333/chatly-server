@@ -54,7 +54,7 @@ const server = app.listen(port, () => {
 
 const io = new Server(server, {
   cors: {
-    origin: "https://effortless-moonbeam-d5713b.netlify.app/",
+    origin: "https://effortless-moonbeam-d5713b.netlify.app",
   },
 });
 
