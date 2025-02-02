@@ -69,27 +69,35 @@ const fetchChat = async (req, res) => {
 
 const createGroupChat = async (req, res) => {
   if (!req.body.users || !req.body.name) {
-    return res.status(400).send({ message: "fill up the fiels" });
+    return res.status(400).send({ message: "fill up the fields" });
   }
+
   let users = JSON.parse(req.body.users);
 
   if (users.length < 2) {
     return res.status(400).send("invalid user count");
   }
+
+  // Add the current user's ID and remove duplicates
   users.push(req.user.id);
+  users = [...new Set(users)]; // Remove duplicate users
+
   const chatData = {
     isGroupChat: true,
     admin: req.user.id,
     users: users,
     chatName: req.body.name,
   };
+
   const createdChat = await Chat.create(chatData);
   const FullChat = await Chat.findOne({ _id: createdChat._id }).populate(
     "users",
     "-password"
   );
+
   res.send(FullChat);
 };
+
 
 const renameGroup = async (req, res) => {
   const { chatId, chatName } = req.body;
@@ -119,7 +127,7 @@ const addToGroup = async (req, res) => {
   const added = await Chat.findByIdAndUpdate(
     chatId,
     {
-      $push: { users: userId },
+      $addToSet: { users: userId }, // Adds user if not already in the array
     },
     { new: true }
   )
@@ -127,11 +135,12 @@ const addToGroup = async (req, res) => {
     .populate("admin", "-password");
 
   if (!added) {
-    res.send("not found");
+    res.status(404).send("Chat not found");
   } else {
     res.json(added);
   }
 };
+
 
 const removeFromGroup = async (req, res) => {
   const { chatId, userId } = req.body;
